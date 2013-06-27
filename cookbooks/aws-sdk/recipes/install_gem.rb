@@ -24,4 +24,3 @@ aws_gem = gem_package "aws-sdk" do
 end
 
 aws_gem.run_action(:install)
-
