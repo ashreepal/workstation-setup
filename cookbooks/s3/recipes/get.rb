@@ -7,7 +7,7 @@ file_name = node['s3-info']['file_name']
 s3 = AWS::S3.new
 
 # save the file
-save_file = File.open("#{node[:s3_folder_dir]}/#{file_name}", 'w+')
+save_file = File.open("#{node[:s3_folder_dir].last}/#{file_name}", 'w+')
 object = s3.buckets[bucket_name].objects[file_name]
 object.read do |chunk|
   save_file.write(chunk)
