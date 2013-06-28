@@ -7,5 +7,5 @@ s3_files.each do |bucket,file_name|
   gem_name = /-[\d*\.]+\.gem$/.match(file_name).pre_match
   version = /[\d+\.]+\d/.match(/-[\d*\.]+\.gem$/.match(file_name).to_s).to_s
 
-  `/usr/local/bin/gem install #{node[:s3_folder_dir]}/#{file_name} -q --no-rdoc --no-ri -v "#{version}"`
+  `/usr/local/bin/gem install #{node[:s3_folder_dir].last}/#{file_name} -q --no-rdoc --no-ri -v "#{version}"`
 end
