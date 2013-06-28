@@ -5,7 +5,7 @@ log_file = file node[:log_file_dir] do
   mode '0755'
   owner 'root'
   group 'root'
-  content 'log'
+  content node.to_yaml
   action :nothing
 
   only_if do
