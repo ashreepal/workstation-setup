@@ -9,7 +9,7 @@ creds[:secret_access_key] = node['AWS-creds']['secret_access_key']
 creds[:region] = 'us-east-1'
 
 # create the credentials file if it is missing
-creds_file = file node[:creds_file_dir] do
+creds_file = file node['creds_file_dir'] do
   mode '0755'
   owner 'root'
   group 'root'
@@ -17,7 +17,7 @@ creds_file = file node[:creds_file_dir] do
   action :nothing
 
   only_if do
-    ::File.exists?(node[:creds_folder_dir].last)
+    ::File.exists?(node['creds_folder_dir'])
   end
 end
 

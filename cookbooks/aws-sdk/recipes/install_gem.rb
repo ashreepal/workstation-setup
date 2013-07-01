@@ -19,7 +19,7 @@ end
 
 # installs the gem for the aws sdk (no attributes, and default action is
 # install when none is indicated)
-aws_gem = gem_package "aws-sdk" do
+aws_gem = gem_package 'aws-sdk' do
   action :nothing
 end
 
