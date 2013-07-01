@@ -1,5 +1,5 @@
 # configure the AWS credentials once the aws sdk is installed and create
-# credentials file
+# the credentials file
 require 'aws'
 require 'yaml'
 

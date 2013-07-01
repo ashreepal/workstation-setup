@@ -8,7 +8,6 @@ creds_dir = directory "#{node['creds_folder_dir']}" do
   action :nothing
   recursive true
     
-  # skip this step if the directory already exists
   not_if do
     ::File.exists?(node['creds_folder_dir'])
   end
@@ -26,12 +25,10 @@ log_dir = directory "#{node['log_folder_dir']}" do
   action :nothing
   recursive true
   
-  # skip this step if the directory already exists
   not_if do
     ::File.exists?(node['log_folder_dir'])
   end
 
 end
 
-# ensure that this happens immediately
 log_dir.run_action(:create)

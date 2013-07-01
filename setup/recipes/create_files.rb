@@ -1,6 +1,6 @@
 require 'yaml'
 
-# creates the log file
+# creates the log file (which contains the node object)
 log_file = file node['log_file_dir'] do
   mode '0755'
   owner 'root'

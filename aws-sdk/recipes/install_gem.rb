@@ -17,8 +17,7 @@ packages.each do |pkg|
 
 end
 
-# installs the gem for the aws sdk (no attributes, and default action is
-# install when none is indicated)
+# installs the gem for the aws sdk
 aws_gem = gem_package 'aws-sdk' do
   action :nothing
 end

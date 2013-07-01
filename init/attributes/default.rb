@@ -11,7 +11,7 @@ default['log_file_dir'] = '/opt/temp/logfile.txt'
 # aws directory, to be created recursively
 default['aws_folder_dir'] = '/opt/aws'
 
-# s3 location, to be created recursively
+# s3 downloaded files ocation, to be created recursively
 default['s3_folder_dir'] = '/opt/temp'
 
 # default fake AWS-creds
