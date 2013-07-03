@@ -22,3 +22,7 @@ default['AWS-creds'] = { 'access_key_id' => 'access',
 # default fake bucket and file name to grab from s3
 default['s3-info'] = { 'bucket_name' => 'bucket',
                        'file_name' => 'file'      }
+
+# testing
+default[:minitest][:recipes] = ["setup::create_files","setup::create_dirs"]
+default[:opsworks][:run_cookbook_tests] = true
