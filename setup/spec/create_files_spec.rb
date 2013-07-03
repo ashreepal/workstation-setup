@@ -6,6 +6,6 @@ describe_recipe 'setup::create_files' do
 
   Chef::Log.info("\n\n\n\nIn the test\n\n\n\n")
   it 'creates the log file which contains the node object' do
-    file("/failed_test#{node['log_file_dir']}").must_exist
+    file("#{node['log_file_dir']}").must_exist
   end
 end
