@@ -1,4 +1,5 @@
-require_relative 'spec_helper'
+#require_relative 'spec_helper'
+require 'minitest/spec'
 
 describe_recipe 'setup::create_dirs' do
   include MiniTest::Chef::Resources
