@@ -22,3 +22,5 @@ default['AWS-creds'] = { 'access_key_id' => 'access',
 # default fake bucket and file name to grab from s3
 default['s3-info'] = { 'bucket_name' => 'bucket',
                        'file_name' => 'file'      }
+
+default['opsworks']['ruby_version'] = '1.9.3'
