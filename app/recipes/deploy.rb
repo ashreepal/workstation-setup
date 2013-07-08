@@ -3,7 +3,7 @@ node[:deploy].each do |application, deploy|
   deploy[:group] = 'ubuntu'
 
   directory "/srv/www/#{application}/shared/cached-copy" do
-    user 'root'
+    owner 'root'
     group 'root'
     action :nothing
   end.run_action(:create)
