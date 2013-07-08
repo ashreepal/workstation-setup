@@ -10,7 +10,9 @@ if node[:opsworks][:run_cookbook_tests]
 
   Chef::Log.info('Enabling minitest-chef-handler as a report handler')
   handler = MiniTest::Chef::Handler.new({
-    :verbose => true})
+    :verbose => true,
+    :filter => 'setup'
+  })
 
   Chef::Config.send('report_handlers').delete_if do |v|
     v.class.to_s.include? MiniTest::Chef::Handler
