@@ -24,3 +24,4 @@ default['s3-info'] = { 'bucket_name' => 'bucket',
                        'file_name' => 'file'      }
 
 set['opsworks']['ruby_version'] = '1.9.3'
+set['opsworks']['ruby_stack'] = 'ruby'
