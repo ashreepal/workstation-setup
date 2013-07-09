@@ -6,6 +6,7 @@ node[:deploy].each do |application, deploy|
     owner 'root'
     group 'root'
     action :nothing
+    recursive true
   end.run_action(:create)
   
   opsworks_deploy do
