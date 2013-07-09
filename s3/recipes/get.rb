@@ -1,7 +1,7 @@
 require 'aws'
 
 # get the s3 info (buckets and their files)
-s3_files = node['s3-info']
+s3_files = node['s3-install-on-setup']
 
 s3 = AWS::S3.new
 

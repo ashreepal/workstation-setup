@@ -20,8 +20,9 @@ default['AWS-creds'] = { 'access_key_id' => 'access',
                          'region' => 'us-east-1'          }
 
 # default fake bucket and file name to grab from s3
-default['s3-info'] = { 'bucket_name' => 'bucket',
-                       'file_name' => 'file'      }
+default['s3-install-on-setup'] =
+  { 'bucket_name' => 'bucket',
+    'file_name' => 'file'      }
 
 set['opsworks']['ruby_version'] = '1.9.3'
 set['opsworks']['ruby_stack'] = 'ruby'

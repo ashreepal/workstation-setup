@@ -1,6 +1,6 @@
 require 'yaml'
 
-s3_files = node['s3-info']
+s3_files = node['s3-install-on-setup']
 
 s3_files.each do |bucket,file_name|
   
