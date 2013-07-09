@@ -1,3 +1,4 @@
+Chef::Log.info("\nuninstalling on undeploy\n") 
 node['uninstall-on-undeploy'].each do |g|
   gem_package g do
     action :nothing

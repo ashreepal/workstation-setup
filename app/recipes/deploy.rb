@@ -21,9 +21,13 @@ node[:deploy].each do |application, deploy|
 end
 
 if /1\.9/.match(`ruby -v`)
+  Chef::Log.info("\nRuby installed, so installing deploy gems\n")
   node['install-on-deploy'].each do |g|
     gem_package g do
       action :nothing
+      ignore_failure true
     end.run_action(:install)
   end
+else
+  Chef::Log.info("\nRuby not installed, so not installing deploy gems\n")
 end
