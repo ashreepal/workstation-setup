@@ -20,8 +20,10 @@ node[:deploy].each do |application, deploy|
 
 end
 
-node['install-on-deploy'].each do |g|
-  gem_package g do
-    action :nothing
-  end.run_action(:install)
+if /1\.9/.match(`ruby -v`)
+  node['install-on-deploy'].each do |g|
+    gem_package g do
+      action :nothing
+    end.run_action(:install)
+  end
 end
