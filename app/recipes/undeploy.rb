@@ -1,3 +1,4 @@
+# uninstall gems on undeploy if they should be removed
 Chef::Log.info("\nuninstalling on undeploy\n") 
 node['uninstall-on-undeploy'].each do |g|
   gem_package g do
