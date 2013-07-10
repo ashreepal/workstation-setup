@@ -9,3 +9,6 @@ include_recipe 'setup::configure'
 
 # download and install gems from s3
 include_recipe 's3::default'
+
+# install any other gems that need to be installed
+include_recipe 'gems::default'
