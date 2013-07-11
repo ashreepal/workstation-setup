@@ -12,3 +12,5 @@ include_recipe 'gems::default'
 
 # indicate that the machine is now finished being set up
 node['machine-set-up'] = true
+
+Chef::Log.info("machine now set up, so #{node['machine-set-up']}")
