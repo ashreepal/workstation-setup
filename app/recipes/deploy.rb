@@ -25,9 +25,11 @@ end
 # if ruby 1.9.3 is installed, then install the gems (only after the configure stage)
 if /1\.9/.match(`ruby -v`)
   Chef::Log.info("\nRuby installed, so installing deploy gems\n")
-  node['install-on-deploy'].each do |g|
+  node['install-on-deploy'].each do |gem_info|
+    g,v = gem_info
     gem_package g do
       action :nothing
+      version v
       ignore_failure true
     end.run_action(:install)
   end
