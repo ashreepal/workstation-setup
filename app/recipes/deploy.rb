@@ -29,7 +29,7 @@ if /1\.9/.match(`ruby -v`)
     g,v = gem_info
     gem_package g do
       action :nothing
-      version v
+#      version v
       ignore_failure true
     end.run_action(:install)
   end

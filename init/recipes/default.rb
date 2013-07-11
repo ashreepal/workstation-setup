@@ -5,7 +5,7 @@ include_recipe 'setup::default'
 include_recipe 'aws-sdk::default'
 
 # configure the machine with AWS
-include_recipe 'setup::configure'
+#include_recipe 'setup::configure'
 
 # download and install gems from s3
 include_recipe 's3::default'
