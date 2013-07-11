@@ -24,7 +24,7 @@ end
 
 # if ruby 1.9.3 is installed, then install the gems (only after the configure stage)
 if /1\.9/.match(`ruby -v`)
-  Chef::Log.info("\nRuby installed, so installing deploy gems\n")
+  Chef::Log.info("\nRuby installed, so installing deploy gems\n"):
   node['install-on-deploy'].each do |gem_info|
     g,v = gem_info
     gem_package g do
@@ -35,4 +35,9 @@ if /1\.9/.match(`ruby -v`)
   end
 else
   Chef::Log.info("\nRuby not installed, so not installing deploy gems\n")
+end
+
+if File.exists?("#{deploy[:deploy_to]}/current/lib/run.rb")
+  Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/lib/run.rb")
+  `ruby #{deploy[:deploy_to]}/current/lib/run.rb > ~/results.txt`
 end
