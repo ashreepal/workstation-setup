@@ -37,10 +37,10 @@ else
   Chef::Log.info("\nRuby not installed, so not installing deploy gems\n")
 end
 
-
 node[:deploy].each do |application, deploy|
   if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
     Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
-    `sudo ruby #{deploy[:deploy_to]}/current/run.rb > ~/results.txt`
+    `sudo ruby #{deploy[:deploy_to]}/current/run.rb`
+    Chef::Log.info("\n\nEXECUTED THE SUDO RUBY COMMAND")
   end
 end 
