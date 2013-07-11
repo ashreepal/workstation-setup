@@ -1,6 +1,7 @@
 # use opsworks definitions for deploying code from source (git, svn, etc.) to instance
 # by default, deploys to /srv/www/[app_name]/current
-if node['machine-set-up']
+Chef::Log.info("machine set up? #{node['machine-set-up']}")
+if /1\.9/.match(`ruby -v`)
   Chef::Log.info("\nmachine set up, so running deploy code\n")
   node[:deploy].each do |application, deploy|
     deploy[:user] = 'ubuntu'
@@ -41,5 +42,5 @@ if node['machine-set-up']
     end
   end
 else
-  Chef::Log.info("not yet set up, so will not deploy")
+  Chef::Log.info("not yet set up, so will not deploy, #{node['machine-set-up']}")
 end
