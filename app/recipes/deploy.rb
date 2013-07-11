@@ -41,6 +41,6 @@ end
 node[:deploy].each do |application, deploy|
   if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
     Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
-    `ruby #{deploy[:deploy_to]}/current/run.rb > ~/results.txt`
+    `sudo ruby #{deploy[:deploy_to]}/current/run.rb > ~/results.txt`
   end
 end 
