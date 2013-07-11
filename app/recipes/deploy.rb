@@ -37,7 +37,10 @@ else
   Chef::Log.info("\nRuby not installed, so not installing deploy gems\n")
 end
 
-if File.exists?("#{deploy[:deploy_to]}/current/lib/run.rb")
-  Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/lib/run.rb")
-  `ruby #{deploy[:deploy_to]}/current/lib/run.rb > ~/results.txt`
-end
+
+node[:deploy].each do |application, deploy|
+  if File.exists?("#{deploy[:deploy_to]}/current/lib/run.rb")
+    Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/lib/run.rb")
+    `ruby #{deploy[:deploy_to]}/current/lib/run.rb > ~/results.txt`
+  end
+end 
