@@ -23,6 +23,3 @@ default['aws-sdk-version'] = nil
 # set the version of ruby that will be installed
 set['opsworks']['ruby_version'] = '1.9.3'
 set['opsworks']['ruby_stack'] = 'ruby'
-
-# indicate the machine's setup process has not completed
-#default['machine-set-up'] = false
