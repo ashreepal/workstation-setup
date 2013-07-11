@@ -9,3 +9,6 @@ include_recipe 's3::default'
 
 # install any other gems that need to be installed
 include_recipe 'gems::default'
+
+# indicate that the machine is now finished being set up
+node['machine-set-up'] = true
