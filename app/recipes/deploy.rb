@@ -35,13 +35,13 @@ if node[:opsworks][:activity] == 'deploy'
     end.run_action(:install)
   end
 
-  node[:deploy].each do |application, deploy|
-    if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
-      Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
-      `sudo ruby #{deploy[:deploy_to]}/current/run.rb`
-      Chef::Log.info("\n\nEXECUTED THE SUDO RUBY COMMAND")
-    end
+  deploy = node[:deploy]
+  application = node[:deploy][:application]
+  if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
+    Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
+    `sudo ruby #{deploy[:deploy_to]}/current/run.rb`
+    Chef::Log.info("\n\nEXECUTED THE SUDO RUBY COMMAND")
   end
 else
-  Chef::Log.info("not yet set up, so will not run anything, #{node['machine-set-up']}")
+  Chef::Log.info("not yet set up, so will not run anything")
 end
