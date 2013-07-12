@@ -39,10 +39,15 @@ if node[:opsworks][:activity] == 'deploy'
 
   node[:deploy].each do |application, deploy|
     Chef::Log.info("1 #{deploy[:deploy_to]}/current/run.rb\n")
-    if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
+    
+    bash 'run_code' do
+      code "sudo ruby #{deploy[:deploy_to]}/current/run.rb"
       Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
-      `sudo ruby #{deploy[:deploy_to]}/current/run.rb`
       Chef::Log.info("\n\nEXECUTED THE SUDO RUBY COMMAND")
+        
+      only_if do
+        ::File.exists?("#{deploy[:deploy_to]}/current/run.rb")
+      end
     end
   end
 else
