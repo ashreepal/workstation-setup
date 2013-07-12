@@ -35,6 +35,8 @@ if node[:opsworks][:activity] == 'deploy'
     end.run_action(:install)
   end
 
+  Chef::Log.info("Deploy object looks like: \n")
+  Chef::Log.info("#{node[:deploy]}\n")
   deploy = node[:deploy]
   application = node[:deploy][:application]
   if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
