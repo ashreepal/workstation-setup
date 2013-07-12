@@ -37,13 +37,11 @@ if node[:opsworks][:activity] == 'deploy'
     end.run_action(:install)
   end
 
-  Chef::Log.info("Deploy object looks like: \n")
-  Chef::Log.info("#{node[:deploy].to_yaml}\n")
-  deploy = node[:deploy]
-  application = node[:deploy][:application]
-  if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
-    Chef::Log.info("\n\nFILE EXISTS: #{deploy[:deploy_to]}/current/run.rb")
-    `sudo ruby #{deploy[:deploy_to]}/current/run.rb`
+  Chef::Log.info("node object looks like: \n")
+  Chef::Log.info("#{node.to_yaml}\n")
+  if File.exists?("#{node[:deploy][:deploy_to]}/current/run.rb")
+    Chef::Log.info("\n\nFILE EXISTS: #{node[:deploy][:deploy_to]}/current/run.rb")
+    `sudo ruby #{node[:deploy][:deploy_to]}/current/run.rb`
     Chef::Log.info("\n\nEXECUTED THE SUDO RUBY COMMAND")
   end
 else
