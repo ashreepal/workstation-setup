@@ -1,5 +1,7 @@
 # use opsworks definitions for deploying code from source (git, svn, etc.) to instance
 # by default, deploys to /srv/www/[app_name]/current
+require 'yaml'
+
 node[:deploy].each do |application, deploy|
   Chef::Log.info("\n\ndeploying stuff\n\n")
   deploy[:user] = 'ubuntu'
@@ -36,7 +38,7 @@ if node[:opsworks][:activity] == 'deploy'
   end
 
   Chef::Log.info("Deploy object looks like: \n")
-  Chef::Log.info("#{node[:deploy]}\n")
+  Chef::Log.info("#{node[:deploy].to_yaml}\n")
   deploy = node[:deploy]
   application = node[:deploy][:application]
   if File.exists?("#{deploy[:deploy_to]}/current/run.rb")
