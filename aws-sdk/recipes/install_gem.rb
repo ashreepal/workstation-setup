@@ -21,7 +21,7 @@ end
 aws_gem = gem_package 'aws-sdk' do
   action :nothing
 #  version node['aws-sdk-version']
-  not_if 'sleep 10000', :timeout => 10
+  not_if 'sleep 60000', :timeout => 60
 end
 
 aws_gem.run_action(:install)
