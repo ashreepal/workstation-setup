@@ -30,7 +30,7 @@ if node[:opsworks][:activity] == 'deploy'
 
   config_options = {}
   config_options['activity-workers'] = node['activity-workers']
-  config_options['activity-workers'].map do |e|
+  config_options = config_options['activity-workers'].map do |e|
     Chef::Log.info("\n\n\nPrinting activity-workers information\n\n\n")
     Chef::Log.info(e)
     Chef::Log.info(e.class)
@@ -39,7 +39,7 @@ if node[:opsworks][:activity] == 'deploy'
     e.to_hash
   end
   config_options['workflow-workers'] = node['workflow-workers']
-  config_options['workflow-workers'].map do |e|
+  config_options = config_options['workflow-workers'].map do |e|
     Chef::Log.info("\n\n\nPrinting workflow-workers information\n\n\n")
     Chef::Log.info(e)
     Chef::Log.info(e.class)
