@@ -31,24 +31,25 @@ if node[:opsworks][:activity] == 'deploy'
   config_options = {}
   config_options['activity-workers'] = node['activity-workers']
   config_options['activity-workers'].map do |e|
-    puts e
-    puts e.class
-    puts e.to_hash
-    puts e.to_hash.class
+    Chef::Log.info("\n\n\nPrinting activity-workers information\n\n\n")
+    Chef::Log.info(e)
+    Chef::Log.info(e.class)
+    Chef::Log.info(e.to_hash)
+    Chef::Log.info(e.to_hash.class)
     e.to_hash
   end
   config_options['workflow-workers'] = node['workflow-workers']
   config_options['workflow-workers'].map do |e|
-    puts e
-    puts e.class
-    puts e.to_hash
-    puts e.to_hash.class
+    Chef::Log.info("\n\n\nPrinting workflow-workers information\n\n\n")
+    Chef::Log.info(e)
+    Chef::Log.info(e.class)
+    Chef::Log.info(e.to_hash)
+    Chef::Log.info(e.to_hash.class)
     e.to_hash
   end
 
   Chef::Log.info(config_options.to_yaml)
   
-  Chef::Log.info
 
   # creates the config file (which contains the config options for deployment)
   config_file = file node['config_file_dir'] do
