@@ -30,9 +30,9 @@ if node[:opsworks][:activity] == 'deploy'
 
   config_options = {}
   config_options['activity-workers'] = node['activity-workers']
-  config_options['activity-workers'].each { |e| e.to_hash }
+  config_options['activity-workers'].map { |e| e.to_hash }
   config_options['workflow-workers'] = node['workflow-workers']
-  config_options['workflow-workers'].each { |e| e.to_hash }
+  config_options['workflow-workers'].map { |e| e.to_hash }
 
   Chef::Log.info(config_options.to_yaml)
   
