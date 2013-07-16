@@ -1,3 +1,5 @@
+require 'yaml'
+
 # use opsworks definitions for deploying code from source (git, svn, etc.) to instance
 # by default, deploys to /srv/www/[app_name]/current
 node[:deploy].each do |application, deploy|
@@ -25,7 +27,29 @@ end
 # if deploying the app, install the gems specified by the user and run
 # the code that is deployed
 if node[:opsworks][:activity] == 'deploy'
+
+  config_options = {}
+  config_options['activity-workers'] = node['activity-workers']
+  config_options['workflow-workers'] = node['workflow-workers']
+
+  Chef::Log.info(config_options.to_yaml)
   
+  # creates the config file (which contains the config options for deployment)
+  config_file = file node['config_file_dir'] do
+    mode '0755'
+    owner 'root'
+    group 'root'
+    content config_options.to_yaml
+    action :nothing
+  
+    only_if do
+      ::File.exists?(node['config_folder_dir'])
+    end
+  
+  end
+  
+  config_file.run_action(:create)
+
   node['install-on-deploy'].each do |gem_info|
     g,v = gem_info
     gem_package g do

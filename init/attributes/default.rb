@@ -4,6 +4,10 @@
 default['log_folder_dir'] = '/opt/temp'
 default['log_file_dir'] = '/opt/temp/logfile.txt'
 
+# configfile location, for use during deployment
+default['config_folder_dir'] = '/opt/temp'
+default['config_file_dir'] = '/opt/temp/config.txt'
+
 # aws directory, to be created recursively
 default['aws_folder_dir'] = '/opt/aws'
 
