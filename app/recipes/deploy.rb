@@ -37,6 +37,18 @@ if node[:opsworks][:activity] == 'deploy'
   
   Chef::Log.info(config_options.to_yaml)
   
+  config_options['activity-workers'].each do |e|
+    Chef::Log.info("Should be a hash:")
+    Chef::Log.info(e.class)
+    Chef::Log.info(e)
+  end
+
+  config_options['workflow-workers'].each do |e|
+    Chef::Log.info("Should be a hash:")
+    Chef::Log.info(e.class)
+    Chef::Log.info(e)
+  end
+  
 
   # creates the config file (which contains the config options for deployment)
   config_file = file node['config_file_dir'] do
