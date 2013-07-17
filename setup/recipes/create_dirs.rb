@@ -1,6 +1,4 @@
 # Creating directory for the log file
-
-# creates all the directories into log_folder_dir recursively
 log_dir = directory "#{node['log_folder_dir']}" do
   mode '0755'
   owner 'root'

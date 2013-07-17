@@ -35,22 +35,24 @@ if node[:opsworks][:activity] == 'deploy'
   config_options['workflow-workers'] = node['workflow-workers']
   config_options['workflow-workers'] = config_options['workflow-workers'].map { |e| e.to_hash }
   
-  Chef::Log.info(config_options.to_yaml)
-  
-  config_options['activity-workers'].each do |e|
-    Chef::Log.info("Should be a hash:")
-    Chef::Log.info(e.class)
-    Chef::Log.info(e)
-  end
-
-  config_options['workflow-workers'].each do |e|
-    Chef::Log.info("Should be a hash:")
-    Chef::Log.info(e.class)
-    Chef::Log.info(e)
-  end
-  
+  custom_options = node['custom-options'].to_hash
 
   # creates the config file (which contains the config options for deployment)
+  config_dir = directory "#{node['config_folder_dir']}" do
+    mode '0755'
+    owner 'root'
+    group 'root'
+    action :nothing
+    recursive true
+    
+    not_if do
+      ::File.exists?(node['config_folder_dir'])
+    end
+  
+  end
+  
+  config_dir.run_action(:create)
+  
   config_file = file node['config_file_dir'] do
     mode '0755'
     owner 'root'
@@ -66,6 +68,37 @@ if node[:opsworks][:activity] == 'deploy'
   
   config_file.run_action(:create)
 
+  # creates the custom file (which contains the custom variables for deployment)
+  custom_dir = directory "#{node['custom_folder_dir']}" do
+    mode '0755'
+    owner 'root'
+    group 'root'
+    action :nothing
+    recursive true
+    
+    not_if do
+      ::File.exists?(node['custom_folder_dir'])
+    end
+  
+  end
+  
+  custom_dir.run_action(:create)
+  
+  custom_file = file node['custom_file_dir'] do
+    mode '0755'
+    owner 'root'
+    group 'root'
+    content custom_options.to_yaml
+    action :nothing
+  
+    only_if do
+      ::File.exists?(node['custom_folder_dir'])
+    end
+  
+  end
+  
+  custom_file.run_action(:create)
+  
   node['install-on-deploy'].each do |gem_info|
     g,v = gem_info
     gem_package g do
