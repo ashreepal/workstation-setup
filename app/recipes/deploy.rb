@@ -10,6 +10,8 @@ if node[:opsworks][:activity] == 'deploy'
 
   include_recipe 'app::install_on_deploy'
 
+  include_recipe 'app::save_paths'
+
   include_recipe 'app::run'
 
 end
