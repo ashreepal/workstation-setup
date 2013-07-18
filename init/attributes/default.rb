@@ -12,6 +12,10 @@ default['config_file_dir'] = '/opt/temp/config.txt'
 default['custom_folder_dir'] = '/opt/temp'
 default['custom_file_dir'] = '/opt/temp/custom.txt'
 
+# pathsfile location, used by run code to find relevant information/parameters
+default['paths_folder_dir'] = '/opt/temp'
+default['paths_file_dir'] = '/opt/temp/paths.txt'
+
 # aws directory, to be created recursively
 default['aws_folder_dir'] = '/opt/aws'
 
