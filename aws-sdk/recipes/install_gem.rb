@@ -9,18 +9,13 @@ packages = value_for_platform(
 
 # installing the packages
 packages.each do |pkg|
-  aws_pkg = package pkg do
+  package pkg do
     action :nothing
-  end
-
-  aws_pkg.run_action(:install)
-
+  end.run_action(:install)
 end
 
 # installs the gem for the aws sdk
-aws_gem = gem_package 'aws-sdk' do
+gem_package 'aws-sdk' do
   action :nothing
 #  version node['aws-sdk-version']
-end
-
-aws_gem.run_action(:install)
+end.run_action(:install)

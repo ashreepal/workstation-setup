@@ -1,11 +1,9 @@
 require 'yaml'
 
+# records path to important files that will need to be accessed by the runner later
 paths = {}
 paths['config'] = node['config_file_dir']
 paths['custom'] = node['custom_file_dir']
-
-Chef::Log.info("type of node[:deploy]: #{node[:deploy].class}")
-Chef::Log.info("type of node: #{node.class}")
 
 node[:deploy].each do |application, deploy|
   paths['workflows'] = node['workflow-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }

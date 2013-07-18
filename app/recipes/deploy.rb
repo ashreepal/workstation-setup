@@ -1,17 +1,19 @@
+# deploy the app code to the machine
 include_recipe 'app::deploy_code'
 
-# if deploying the app, install the gems specified by the user and run
-# the code that is deployed
 if node[:opsworks][:activity] == 'deploy'
 
+  # save config and custom options into files for later access
   include_recipe 'app::save_config'
-
   include_recipe 'app::save_custom'
 
+  # install gems indicated in JSON to be installed on deploy
   include_recipe 'app::install_on_deploy'
 
+  # save paths to necessary files (custom, config, etc.) for access by runner gem
   include_recipe 'app::save_paths'
 
+  # use runner gem to begin running
   include_recipe 'app::run'
 
 end

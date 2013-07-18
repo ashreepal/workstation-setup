@@ -1,3 +1,4 @@
+# create the runner.rb file (just requires runner-gem
 file '/home/ubuntu/runner.rb' do
   mode '0755'
   owner 'root'
@@ -11,6 +12,7 @@ file '/home/ubuntu/runner.rb' do
 
 end.run_action(:create)
 
+# run the code
 node[:deploy].each do |application, deploy|    
   bash 'run_code' do
     code "sudo ruby /home/ubuntu/runner.rb"
