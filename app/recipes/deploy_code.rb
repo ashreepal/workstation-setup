@@ -1,9 +1,12 @@
 # use opsworks definitions for deploying code from source (git, svn, etc.) to instance
 # by default, deploys to /srv/www/[app_name]/current
+require 'yaml'
+
 node[:deploy].each do |application, deploy|
   Chef::Log.info("\n\ndeploying stuff\n\n")
-  deploy[:user] = 'ubuntu'
-  deploy[:group] = 'ubuntu'
+  Chef::Log.info("\n\n\n\n\n\n#{node.to_yaml}\n\n\n\n\n\n")
+  deploy[:user] = 'root'
+  deploy[:group] = 'root'
 
   opsworks_deploy_user do
     deploy_data deploy
