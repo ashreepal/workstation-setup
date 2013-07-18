@@ -9,8 +9,6 @@ s3 = AWS::S3.new
 s3_files.each do |bucket_name, file_name|
   save_file = File.open("#{node['s3_folder_dir']}/#{file_name}", 'w+')
   object = s3.buckets[bucket_name].objects[file_name]
-  object.read do |chunk|
-    save_file.write(chunk)
-  end
+  object.read { |chunk| save_file.write(chunk) }
   save_file.close
 end
