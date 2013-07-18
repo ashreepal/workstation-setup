@@ -3,8 +3,14 @@ require 'yaml'
 paths = {}
 paths['config'] = node['config_file_dir']
 paths['custom'] = node['custom_file_dir']
-paths['workflows'] = node['workflow-paths']
-paths['activities'] = node['activity-paths']
+
+Chef::Log.info("type of node[:deploy]: #{node[:deploy].class}")
+Chef::Log.info("type of node: #{node.class}")
+
+node[:deploy].each do |application, deploy|
+  paths['workflows'] = node['workflow-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }
+  paths['activities'] = node['activity-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }
+end
 
 directory "#{node['paths_folder_dir']}" do
   mode '0755'
