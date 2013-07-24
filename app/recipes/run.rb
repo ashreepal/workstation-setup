@@ -1,5 +1,18 @@
-# create the runner.rb file (just requires runner-gem
-file '/home/ubuntu/runner.rb' do
+directory '/home/runner' do
+  mode '0755'
+  owner 'root'
+  group 'root'
+  action :nothing
+  recursive true
+  
+  not_if do
+    ::File.exists?('/home/runner')
+  end
+
+end.run_action(:create)
+
+# create the runner.rb file (just requires runner-gem)
+file '/home/runner/runner.rb' do
   mode '0755'
   owner 'root'
   group 'root'
@@ -7,18 +20,18 @@ file '/home/ubuntu/runner.rb' do
   action :nothing
 
   only_if do
-    ::File.exists?('/home/ubuntu/')
+    ::File.exists?('/home/runner/')
   end
 
 end.run_action(:create)
 
 # run the code
-node[:deploy].each do |application, deploy|    
+node[:deploy].each do |application, deploy|
   bash 'run_code' do
-    code "sudo ruby /home/ubuntu/runner.rb"
+    code "sudo ruby /home/runner/runner.rb"
       
     only_if do
-      ::File.exists?("/home/ubuntu/runner.rb")
+      ::File.exists?("/home/runner/runner.rb")
     end
   end
 end
