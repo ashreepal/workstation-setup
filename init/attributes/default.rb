@@ -2,19 +2,19 @@
 
 # logfile location, to be created recursively
 default['log_folder_dir'] = '/opt/temp'
-default['log_file_dir'] = '/opt/temp/logfile.txt'
+default['log_file_dir'] = '/opt/temp/logfile.yml'
 
 # configfile location, for use during deployment
 default['config_folder_dir'] = '/opt/temp'
-default['config_file_dir'] = '/opt/temp/config.txt'
+default['config_file_dir'] = '/opt/temp/config.yml'
 
 # customfile location, for use during deployment
 default['custom_folder_dir'] = '/opt/temp'
-default['custom_file_dir'] = '/opt/temp/custom.txt'
+default['custom_file_dir'] = '/opt/temp/custom.yml'
 
 # pathsfile location, used by run code to find relevant information/parameters
 default['paths_folder_dir'] = '/opt/temp'
-default['paths_file_dir'] = '/opt/temp/paths.txt'
+default['paths_file_dir'] = '/opt/temp/paths.yml'
 
 # aws directory, to be created recursively
 default['aws_folder_dir'] = '/opt/aws'
