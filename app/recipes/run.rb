@@ -28,7 +28,7 @@ end.run_action(:create)
 # run the code
 node[:deploy].each do |application, deploy|
   bash 'run_code' do
-    code "sudo -u #{node['user'} ruby /home/runner/runner.rb"
+    code "sudo -u #{node['user']} ruby /home/runner/runner.rb"
       
     only_if do
       ::File.exists?("/home/runner/runner.rb")
