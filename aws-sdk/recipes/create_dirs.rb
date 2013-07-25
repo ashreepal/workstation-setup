@@ -1,8 +1,8 @@
 # creates the directory of aws_folder_dir recursively
 directory "#{node['aws_folder_dir']}" do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user'] 
+  group node['group']
   action :nothing
   recursive true
   

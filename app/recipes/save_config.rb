@@ -11,8 +11,8 @@ config_options['workflow-workers'] = config_options['workflow-workers'].map { |e
 # creates the config file (which contains the config options for deployment)
 config_dir = directory "#{node['config_folder_dir']}" do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   action :nothing
   recursive true
   
@@ -26,8 +26,8 @@ config_dir.run_action(:create)
 
 config_file = file node['config_file_dir'] do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   content config_options.to_yaml
   action :nothing
 

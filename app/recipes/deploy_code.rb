@@ -1,8 +1,8 @@
 # use opsworks definitions for deploying code from source (git, svn, etc.) to instance
 # by default, deploys to /srv/www/[app_name]/current
 node[:deploy].each do |application, deploy|
-  deploy[:user] = 'root'
-  deploy[:group] = 'root'
+  deploy[:user] = node['user']
+  deploy[:group] = node['group']
 
   opsworks_deploy_user do
     deploy_data deploy

@@ -5,8 +5,8 @@ custom_options = node['custom-options'].to_hash
 # creates the custom file (which contains the custom variables for deployment)
 custom_dir = directory "#{node['custom_folder_dir']}" do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   action :nothing
   recursive true
   
@@ -20,8 +20,8 @@ custom_dir.run_action(:create)
 
 custom_file = file node['custom_file_dir'] do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   content custom_options.to_yaml
   action :nothing
 

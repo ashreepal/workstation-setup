@@ -12,8 +12,8 @@ end
 
 directory "#{node['paths_folder_dir']}" do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   action :nothing
   recursive true
   
@@ -25,8 +25,8 @@ end.run_action(:create)
 
 file node['paths_file_dir'] do
   mode '0755'
-  owner 'root'
-  group 'root'
+  owner node['user']
+  group node['group']
   content paths.to_yaml
   action :nothing
 
