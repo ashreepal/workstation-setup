@@ -40,4 +40,7 @@ set['opsworks']['ruby_stack'] = 'ruby'
 default['user'] = `id -u -n`
 default['group'] = `id -g -n` 
 
+# set default runner location
+default['runner-code-location'] = '/home/runner'
+
 Chef::Log.info("\n\n\n\n\n\ndefault user and group are: #{node['user']} and #{node['group']}\n\n\n\n\n\n")
