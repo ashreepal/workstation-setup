@@ -41,6 +41,7 @@ default['user'] = `id -u -n`
 default['group'] = `id -g -n` 
 
 # set default runner location
-default['runner-code-location'] = '/home/runner'
+default['runner_folder_dir'] = '/home/runner'
+default['runner_file_dir'] = '/home/runner/runner.rb'
 
 Chef::Log.info("\n\n\n\n\n\ndefault user and group are: #{node['user']} and #{node['group']}\n\n\n\n\n\n")

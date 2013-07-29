@@ -1,4 +1,4 @@
-directory node['runner-code-location'] do
+directory node['runner_folder_dir'] do
   mode '0755'
   owner node['user']
   group node['group']
@@ -6,13 +6,13 @@ directory node['runner-code-location'] do
   recursive true
   
   not_if do
-    ::File.exists?(node['runner-code-location'])
+    ::File.exists?(node['runner_folder_dir']
   end
 
 end.run_action(:create)
 
-# create the runner.rb file (just requires runner-gem)
-file "#{node['runner-code-location']}/runner.rb" do
+# create the runner ruby file (just requires runner-gem)
+file "#{node['runner_file_dir']}" do
   mode '0755'
   owner node['user']
   group node['group']
@@ -20,7 +20,7 @@ file "#{node['runner-code-location']}/runner.rb" do
   action :nothing
 
   only_if do
-    ::File.exists?("#{node['runner-code-location']}/")
+    ::File.exists?("#{node['runner_folder_dir']}")
   end
 
 end.run_action(:create)
@@ -28,10 +28,10 @@ end.run_action(:create)
 # run the code
 node[:deploy].each do |application, deploy|
   bash 'run_code' do
-    code "sudo -u #{node['user']} ruby #{node['runner-code-location']}/runner.rb"
+    code "sudo -u #{node['user']} ruby #{node['runner_file_dir']}"
       
     only_if do
-      ::File.exists?("#{node['runner-code-location']}/runner.rb")
+      ::File.exists?("#{node['runner_file_dir']}")
     end
   end
 end
