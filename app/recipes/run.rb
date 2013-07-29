@@ -6,7 +6,7 @@ directory node['runner_folder_dir'] do
   recursive true
   
   not_if do
-    ::File.exists?(node['runner_folder_dir']
+    ::File.exists?(node['runner_folder_dir'])
   end
 
 end.run_action(:create)
