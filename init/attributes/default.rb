@@ -2,19 +2,19 @@
 
 # logfile location, to be created recursively
 default['log_folder_dir'] = '/opt/temp'
-default['log_file_dir'] = '/opt/temp/logfile.yml'
+default['log_file_dir'] = "#{node['log_folder_dir']}/logfile.yml"
 
 # configfile location, for use during deployment
 default['config_folder_dir'] = '/opt/temp'
-default['config_file_dir'] = '/opt/temp/config.yml'
+default['config_file_dir'] = "#{node['config_folder_dir']}/config.yml"
 
 # customfile location, for use during deployment
 default['custom_folder_dir'] = '/opt/temp'
-default['custom_file_dir'] = '/opt/temp/custom.yml'
+default['custom_file_dir'] = "#{node['custom_folder_dir']}/custom.yml"
 
 # pathsfile location, used by run code to find relevant information/parameters
 default['paths_folder_dir'] = '/opt/temp'
-default['paths_file_dir'] = '/opt/temp/paths.yml'
+default['paths_file_dir'] = "#{node['paths_folder_dir']}/paths.yml"
 
 # aws directory, to be created recursively
 default['aws_folder_dir'] = '/opt/aws'
@@ -42,6 +42,6 @@ default['group'] = `id -g -n`
 
 # set default runner location
 default['runner_folder_dir'] = '/home/runner'
-default['runner_file_dir'] = '/home/runner/runner.rb'
+default['runner_file_dir'] = "#{node['runner_folder_dir']}/runner.rb"
 
 Chef::Log.info("\n\n\n\n\n\ndefault user and group are: #{node['user']} and #{node['group']}\n\n\n\n\n\n")
