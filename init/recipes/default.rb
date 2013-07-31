@@ -1,4 +1,4 @@
-class Chef::Recipe::FileHelper
+class Chef::Recipe
   include FileHelper
 end
 
