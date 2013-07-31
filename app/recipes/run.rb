@@ -11,12 +11,14 @@ directory node['runner_folder_dir'] do
 
 end.run_action(:create)
 
+file_content = "require 'runner-gem'\nrun(#{node['worker_process_name']})"
+
 # create the runner ruby file (just requires runner-gem)
 file "#{node['runner_file_dir']}" do
   mode '0755'
   owner node['user']
   group node['group']
-  content 'require \'runner-gem\''
+  content file_content
   action :nothing
 
 end.run_action(:create)
