@@ -11,7 +11,7 @@ directory node['runner_folder_dir'] do
 
 end.run_action(:create)
 
-file_content = "require 'runner-gem'\nrun(#{node['worker_process_name']})"
+file_content = "require 'runner-gem'\nrun('#{node['worker_process_name']}')"
 
 # create the runner ruby file (just requires runner-gem)
 file "#{node['runner_file_dir']}" do
