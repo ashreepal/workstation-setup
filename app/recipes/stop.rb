@@ -1,2 +1,2 @@
 # kill the workers
-`pkill -9 -f rf-worker`
+`pkill -9 -f aws-rf-worker`

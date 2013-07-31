@@ -19,13 +19,9 @@ file "#{node['runner_file_dir']}" do
   content 'require \'runner-gem\''
   action :nothing
 
-  only_if do
-    ::File.exists?("#{node['runner_folder_dir']}")
-  end
-
 end.run_action(:create)
 
-# run the code
+# run the code under the user id specified in the stack JSON
 node[:deploy].each do |application, deploy|
   bash 'run_code' do
     code "sudo -u #{node['user']} ruby #{node['runner_file_dir']}"
