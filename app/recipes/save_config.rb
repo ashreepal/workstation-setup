@@ -11,24 +11,5 @@ config_options['workflow-workers'] = node['workflow-workers']
 config_options['workflow-workers'] = config_options['workflow-workers'].map { |e| e.to_hash }
   
 # creates the config file (which contains the config options for deployment)
-directory "#{node['config_folder_dir']}" do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  action :nothing
-  recursive true
-  
-  not_if do
-    ::File.exists?(node['config_folder_dir'])
-  end
-
-end.run_action(:create)
-
-file node['config_file_dir'] do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  content config_options.to_yaml
-  action :nothing
-
-end.run_action(:create)
+new_dir(node['config_folder_dir'], '0755', node['user'], node['group'])
+new_file(node['config_file_dir'], '0755', node['user'], node['group'], config_options.to_yaml, true)

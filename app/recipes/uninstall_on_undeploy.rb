@@ -2,6 +2,5 @@
 node['uninstall-on-undeploy'].each do |g|
   gem_package g do
     action :nothing
-    ignore_failure false
   end.run_action(:remove)
 end

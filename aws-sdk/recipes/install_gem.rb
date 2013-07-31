@@ -17,5 +17,5 @@ end
 # installs the gem for the aws sdk
 gem_package 'aws-sdk' do
   action :nothing
-#  version node['aws-sdk-version']
+  version node['aws-sdk-version']
 end.run_action(:install)

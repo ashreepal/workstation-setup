@@ -6,7 +6,6 @@ node['install-on-deploy'].each do |gem_info|
   # the gem will be installed immediately
   gem_package g do
     action :nothing
-    #version v
-    ignore_failure false
+    version v
   end.run_action(:install)
 end

@@ -1,27 +1,9 @@
-directory node['runner_folder_dir'] do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  action :nothing
-  recursive true
-  
-  not_if do
-    ::File.exists?(node['runner_folder_dir'])
-  end
-
-end.run_action(:create)
+new_dir(node['runner_folder_dir'], '0755', node['user'], node['group'])
 
 file_content = "require 'runner-gem'\nrun('#{node['worker_process_name']}')"
 
 # create the runner ruby file (just requires runner-gem)
-file "#{node['runner_file_dir']}" do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  content file_content
-  action :nothing
-
-end.run_action(:create)
+new_file(node['runner_file_dir'], '0755', node['user'], node['group'], file_content, true)
 
 # run the code under the user id specified in the stack JSON
 node[:deploy].each do |application, deploy|

@@ -10,28 +10,5 @@ node[:deploy].each do |application, deploy|
   paths['activities'] = node['activity-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }
 end
 
-directory "#{node['paths_folder_dir']}" do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  action :nothing
-  recursive true
-  
-  not_if do
-    ::File.exists?(node['paths_folder_dir'])
-  end
-
-end.run_action(:create)
-
-file node['paths_file_dir'] do
-  mode '0755'
-  owner node['user']
-  group node['group']
-  content paths.to_yaml
-  action :nothing
-
-  only_if do
-    ::File.exists?(node['paths_folder_dir'])
-  end
-
-end.run_action(:create)
+new_dir(node['paths_folder_dir'], '0755', node['user'], node['group'])
+new_file(node['paths_file_dir'], '0755', node['user'], node['group'], paths.to_yaml, true)
