@@ -1,4 +1,4 @@
-new_dir(node['log_folder_dir'], '0755', node['user'], node['group'])
+FileHelper.new_dir(node['log_folder_dir'], '0755', node['user'], node['group'])
 
 # Creating directory for the log file
 #directory "#{node['log_folder_dir']}" do

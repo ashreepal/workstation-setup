@@ -1,3 +1,7 @@
+class Chef::Recipe::FileHelper
+  include FileHelper
+end
+
 # set up initial files and directories
 include_recipe 'setup::default'
 
