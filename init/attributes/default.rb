@@ -15,14 +15,11 @@ default['config_file_dir'] = "#{node['config_folder_dir']}/config.yml"
 default['custom_folder_dir'] = TEMP_DIR
 default['custom_file_dir'] = "#{node['custom_folder_dir']}/custom.yml"
 
-# pathsfile location, used by run code to find relevant information/parameters
+# pathsfile location, used by runner code to find relevant information/parameters
 default['paths_folder_dir'] = TEMP_DIR
 default['paths_file_dir'] = "#{node['paths_folder_dir']}/paths.yml"
 
-# aws directory, to be created recursively
-default['aws_folder_dir'] = '/opt/aws'
-
-# s3 downloaded files ocation, to be created recursively
+# s3 downloaded files location, to be created recursively
 default['s3_folder_dir'] = TEMP_DIR
 
 # by default, no gems set to grabbed from s3
