@@ -1,5 +1,9 @@
 module FileHelper
   def new_dir(dir, mode, user, group)
+    
+    # the mode sets rwx permissions
+    # the action :nothing then immediate run_action ensures that the directory
+    # creation will occur immediately
     new_dir = directory dir do
       mode mode
       owner user
@@ -16,6 +20,12 @@ module FileHelper
   end
   
   def new_file(dir, mode, user, group, content = nil, overwrite = false)
+    
+    # the mode sets rwx permissions
+    # the action :nothing then immediate run_action ensures that the directory
+    # creation will occur immediately
+    # overwrite indicates whether or not the file should be overwritten if it
+    # already exists, or if it should be left alone
     new_file = file dir do
       mode mode
       owner user
@@ -33,6 +43,8 @@ module FileHelper
   end
 end
 
+# make the class accessible to all recipes that are either in this cookbook
+# or that 'depends' this cookbook in their metadata.rb file
 class Chef::Recipe
   include FileHelper
 end
