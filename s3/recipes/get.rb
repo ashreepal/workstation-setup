@@ -1,6 +1,6 @@
 require 'aws'
 
-# get the s3 info (buckets and their files)
+# get the list of gems from s3 to install during configure (buckets and their files)
 s3_files = node['s3-install-on-setup']
 
 s3 = AWS::S3.new

@@ -9,6 +9,8 @@ packages = value_for_platform(
 
 # installing the packages
 packages.each do |pkg|
+  
+  # run_action is used to ensure that the installation occurs immediately
   package pkg do
     action :nothing
   end.run_action(:install)

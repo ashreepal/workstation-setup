@@ -9,6 +9,7 @@ s3_files.each do |bucket,file_name|
 
   gem_name = gem_spec.name.to_s
   version = gem_spec.version.to_s
-
+  
+  # gem install each gem from s3
   `/usr/local/bin/gem install #{node['s3_folder_dir']}/#{file_name} -q --no-rdoc --no-ri -v "#{version}"`
 end
