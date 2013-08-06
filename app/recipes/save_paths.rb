@@ -1,13 +1,18 @@
 require 'yaml'
 
-# records path to important files that will need to be accessed by the runner later
+# records path to important files that will need to be accessed by the runner
+# file when it is run and workers are deployed
 paths = {}
 paths['config'] = node['config_file_dir']
 paths['custom'] = node['custom_file_dir']
 
 node[:deploy].each do |application, deploy_settings|
-  paths['workflows'] = node['workflow-paths'].map { |p| "#{deploy_settings[:deploy_to]}/current/#{p}" }
-  paths['activities'] = node['activity-paths'].map { |p| "#{deploy_settings[:deploy_to]}/current/#{p}" }
+  paths['workflows'] = node['workflow-paths'].map do |p|
+    "#{deploy_settings[:deploy_to]}/current/#{p}"
+  end
+  paths['activities'] = node['activity-paths'].map do |p|
+    "#{deploy_settings[:deploy_to]}/current/#{p}"
+  end
 end
 
 # creates the file
