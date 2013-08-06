@@ -2,8 +2,8 @@
 node['install-on-deploy'].each do |gem_info|
   g,v = gem_info
 
-  # setting action to :nothing and using run_action(:install) ensures that
-  # the gem will be installed immediately
+  # setting action to :nothing and using run_action(:install) forces the
+  # execution order of the recipes
   gem_package g do
     action :nothing
     version v

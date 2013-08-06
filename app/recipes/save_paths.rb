@@ -5,9 +5,9 @@ paths = {}
 paths['config'] = node['config_file_dir']
 paths['custom'] = node['custom_file_dir']
 
-node[:deploy].each do |application, deploy|
-  paths['workflows'] = node['workflow-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }
-  paths['activities'] = node['activity-paths'].map { |p| "#{deploy[:deploy_to]}/current/#{p}" }
+node[:deploy].each do |application, deploy_settings|
+  paths['workflows'] = node['workflow-paths'].map { |p| "#{deploy_settings[:deploy_to]}/current/#{p}" }
+  paths['activities'] = node['activity-paths'].map { |p| "#{deploy_settings[:deploy_to]}/current/#{p}" }
 end
 
 # creates the file

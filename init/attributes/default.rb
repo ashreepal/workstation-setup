@@ -29,7 +29,7 @@ default['s3-install-on-setup'] = []
 default['install-on-setup'] = []
 
 # set the default version of the aws-sdk to nil so it automatically pulls the
-# newest one
+# newest one by default
 default['aws-sdk-version'] = nil
 
 # set the version of ruby that will be installed
