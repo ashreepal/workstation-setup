@@ -36,11 +36,13 @@ default['aws-sdk-version'] = nil
 set['opsworks']['ruby_version'] = '1.9.3'
 set['opsworks']['ruby_stack'] = 'ruby'
 
-# set default user and group to be the current one (root during recipe execution)
+# the recipes default to using the identity that OpsWorks uses while running
+# recipes, which is the root identity currently
 default['user'] = `id -u -n`
 default['group'] = `id -g -n` 
 
-# set default runner location
+# set default runner location, a file that can be used to redeploy workers
+# while on the instance
 default['runner_folder_dir'] = '/home/runner'
 default['runner_file_dir'] = "#{node['runner_folder_dir']}/runner.rb"
 
