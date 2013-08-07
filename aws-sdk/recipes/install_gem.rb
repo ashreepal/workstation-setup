@@ -16,7 +16,8 @@ packages.each do |pkg|
   end.run_action(:install)
 end
 
-# installs the gem for the aws sdk
+# installs the gem for the aws sdk, and using run_action forces the
+# execution to occur immediately (to preserve a specific execution order)
 gem_package 'aws-sdk' do
   action :nothing
   version node['aws-sdk-version']
