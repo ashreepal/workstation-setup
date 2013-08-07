@@ -1,4 +1,4 @@
-require 'yaml'
+require 'json'
 
 # save the config options from the node object to a new hash to be saved as a
 # file on the machine (the extra to_hash is required because the node object
@@ -12,4 +12,4 @@ config_options['workflow-workers'] = config_options['workflow-workers'].map { |e
   
 # creates the config file (which contains the config options for deployment)
 new_dir(node['config_folder_dir'], '0755', node['user'], node['group'])
-new_file(node['config_file_dir'], '0755', node['user'], node['group'], config_options.to_yaml, true)
+new_file(node['config_file_dir'], '0755', node['user'], node['group'], config_options.to_json, true)
