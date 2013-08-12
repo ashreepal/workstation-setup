@@ -4,8 +4,8 @@ include_recipe 'app::deploy_code'
 if node[:opsworks][:activity] == 'deploy'
 
   # save config and custom options into files for later access
-  include_recipe 'app::save_config'
-  include_recipe 'app::save_custom'
+  include_recipe 'app::save_workers_config'
+  include_recipe 'app::save_custom_options'
 
   # install gems indicated in JSON to be installed on deploy
   include_recipe 'app::install_on_deploy'
