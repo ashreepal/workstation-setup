@@ -5,19 +5,19 @@ TEMP_DIR = '/opt/temp'
 
 # logfile location, to be created recursively
 default['log_folder_dir'] = TEMP_DIR
-default['log_file_dir'] = "#{node['log_folder_dir']}/logfile.JSON"
+default['log_file_dir'] = "#{node['log_folder_dir']}/logfile.json"
 
 # configfile location, for use during deployment
 default['config_folder_dir'] = TEMP_DIR
-default['config_file_dir'] = "#{node['config_folder_dir']}/config.JSON"
+default['config_file_dir'] = "#{node['config_folder_dir']}/config.json"
 
 # customfile location, for use during deployment
 default['custom_folder_dir'] = TEMP_DIR
-default['custom_file_dir'] = "#{node['custom_folder_dir']}/custom.JSON"
+default['custom_file_dir'] = "#{node['custom_folder_dir']}/custom.json"
 
 # pathsfile location, used by runner code to find relevant information/parameters
 default['paths_folder_dir'] = TEMP_DIR
-default['paths_file_dir'] = "#{node['paths_folder_dir']}/paths.JSON"
+default['paths_file_dir'] = "#{node['paths_folder_dir']}/paths.json"
 
 # s3 downloaded files location, to be created recursively
 default['s3_folder_dir'] = TEMP_DIR
